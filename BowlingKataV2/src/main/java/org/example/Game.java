@@ -30,11 +30,11 @@ public class Game {
         int throwIndex = 0;
         for(int i=0; i < scores.length; i++){
             String s = scores[i];
-            if (i == REGULAR_NUMBER_OF_FRAMES-1) {  //Ostatni frame
+            if (i == REGULAR_NUMBER_OF_FRAMES-1) {  //Ostatni legalny frame
                 frames[i] = new TenthFrame(throwIndex, listOfThrows);
                 break;
             }
-            else if(s.contains("X")) {              //Spare i Strike mają taki sam kod - można zredukować
+            else if(s.contains("X")) {              //SpareFrame i StrikeFrame mają taki sam kod - redukcja do jednej klasy
                 frames[i] = new SpareStrikeFrame(throwIndex, listOfThrows);
                 throwIndex+=1;
             }
@@ -81,7 +81,7 @@ public class Game {
         return this.totalScore;
     }
 
-    public String printScoresForIndividualFrames(){
+    public String getStringScoresForIndividualFrames(){
         String scoreTable = "";
         for(Frame f : this.frames){
             scoreTable += (f.getFramesScore() + " ");
